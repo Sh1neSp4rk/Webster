@@ -1,0 +1,32 @@
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore environment variable files (for sensitive information)
+.env
+
+# Ignore log files
+*.log
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore any other temporary files or directories
+*.bak
+*.swp
+*.swo
+*.tmp
+
+# Ignore everything in the sites directory except SITE TEMPLATE
+sites/
+!sites/SITE TEMPLATE/
+
+# Ignore screenshots & downloads folders
+screenshots/
+downloads/
+
+# Ignore other system-related files (Mac, Linux, Windows, etc.)
+.DS_Store
+Thumbs.db

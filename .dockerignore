@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+*.git
+*.gitignore
+README.md
+.env
+.vscode/
+downloads/
+logs/
+sites/
+screenshots/
