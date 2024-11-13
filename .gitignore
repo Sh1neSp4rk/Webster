@@ -20,7 +20,7 @@ env/
 *.tmp
 
 # Ignore everything in the sites directory except SITE TEMPLATE
-sites/
+sites/*
 !sites/SITE TEMPLATE/
 
 # Ignore screenshots & downloads folders
