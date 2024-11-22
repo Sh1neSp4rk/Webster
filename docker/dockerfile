@@ -1,0 +1,32 @@
+# Use an official Python image as a base
+FROM python:3.10-slim
+
+# Set up environment variables
+ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y wget gnupg unzip && \
+    # Install Google Chrome
+    wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
+    apt-get update && \
+    apt-get install -y google-chrome-stable && \
+    # Install ChromeDriver
+    wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip && \
+    unzip /tmp/chromedriver.zip -d /usr/local/bin && \
+    rm /tmp/chromedriver.zip && \
+    # Clean up
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy application code to the container
+COPY . /app
+WORKDIR /app
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Specify the default command
+CMD ["python", "main.py"]
